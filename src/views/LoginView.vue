@@ -17,6 +17,7 @@ const codeImgPattern = /^\d{15}$|^\d{18}$/;
 
 
 const idCode = ref<string>();
+// const name = ref<string>();
 const verifyCode = ref<string>();
 
 
@@ -48,8 +49,8 @@ async function onSubmit(formData: LoginFormData) {
 
 <template>
   <div class="wrapper">
-    <h2 class="title mb-3 font-bold">用户登录</h2>
-    <van-form @submit="onSubmit">
+    <img src="../assets/loginTitle.png" class="title mb-3 font-bold"/>
+    <van-form class="main-form" @submit="onSubmit">
       <van-cell-group inset>
         <van-field class="display-none" v-model="verifyKey" type="hidden"></van-field>
         <van-field
@@ -65,8 +66,8 @@ async function onSubmit(formData: LoginFormData) {
         />
         <van-row>
           <van-col span="16"><van-field size="large" v-model="verifyCode" name="verifyCode" label="验证码" placeholder="验证码" :rules="[{ required: true, message: '请填写验证码' }]" /></van-col>
-          <van-col span="8" @click="refresh">
-            <van-image height="50" width="114" :src="verifyCodeImg" />
+          <van-col class="van-image-block" span="8" @click="refresh">
+            <van-image height="48" width="114" :src="verifyCodeImg" />
           </van-col>
         </van-row>
       </van-cell-group>
@@ -87,6 +88,7 @@ async function onSubmit(formData: LoginFormData) {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
 
   &::after {
     content: "";
@@ -95,14 +97,20 @@ async function onSubmit(formData: LoginFormData) {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url("../assets/bg.png") center no-repeat;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8)), url("../assets/bg.jpg") center;
     background-size: cover;
+    background-attachment:fixed;
     z-index: -1;
-    filter: blur(2px);
-    pointer-events: none; /* 添加这行，使虚化层不响应点击事件 */
   }
   .title {
-    font-size: 3rem;
+    width: 90%;
+  }
+  .main-form{
+    width: 98%;
+    min-width: 370px;
+    .van-image-block{
+      text-align: end;
+    }
   }
 }
 </style>

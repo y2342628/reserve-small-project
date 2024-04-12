@@ -16,12 +16,9 @@ const jumpPage = (path: string) => {
 
 <template>
   <main class="wrapper">
-    <div class="mt-8 text-center title">
-      <div class="font-bold ">山东农业工程学院</div>
-      <div class="font-bold">流苏节预约</div>
-    </div>
+    <img src = "../assets/title.png" class="title mt-10 "/>
 
-    <van-row class="mt-8 btn-wrap">
+    <van-row class="mt-9 btn-wrap">
       <van-col :span="24">
         <div class="custom-btn text-center font-bold reserve" @click="jumpPage('reserve')">预约登记</div>
       </van-col>
@@ -38,6 +35,7 @@ const jumpPage = (path: string) => {
   height: 100%;
   padding: 2rem;
   position: relative;
+    background-color: rgba(255, 255, 255, 0.4);
   &::after {
     content: "";
     position: absolute;
@@ -45,25 +43,19 @@ const jumpPage = (path: string) => {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url("../assets/bg.png") center no-repeat;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9)), url("../assets/bg.jpg") center;
     background-size: cover;
+    background-attachment:fixed;
     z-index: -1;
-    filter: blur(2px);
-    pointer-events: none; /* 添加这行，使虚化层不响应点击事件 */
   }
   .title {
-    font-size: 3.5rem;
-    color: #dcd510;
-    letter-spacing: 1rem;
-    text-shadow:1px 0px #009916, 1px 2px #006615, 3px 1px #009916,
-		            2px 3px #006615, 4px 2px #009916, 4px 4px #006615,
-		            5px 3px #009916, 5px 5px #006615, 7px 4px #009916,
+    width:100%;
   }
   .btn-wrap {
     background-color: var(--color-bg);
-    padding: 3rem 2rem;
+    padding: 2rem 1rem;
     border-radius: 6px;
-
+    border:1px solid #acd78d;
   }
 
   .custom-btn {

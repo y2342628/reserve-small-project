@@ -21,6 +21,7 @@ const onLoad = async () => {
       ...i,
       reDate: dateFormat(i.reDate),
       isExpire: isBoforeByDay(i.reDate),
+      statusStr: isBoforeByDay(i.reDate)? "已过期" : "有效",
     }))
   );
 
@@ -35,15 +36,16 @@ const onLoad = async () => {
   <div class="reserve-record">
     <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
       <van-cell-group class="reserve-card" v-for="item in list" :key="item.id">
-        <van-cell title="手机号码" :value="item.phone" />
-        <van-cell title="预约时间" value="" :label="item.reDate" />
-        <van-image class="expire-wrap" v-if="item.isExpire" width="50" height="50" :src="expireImg" />
+        <van-cell :class="item.isExpire?`rev-out`:`rev-in`" title="预约时间" :value="item.statusStr" :label="item.reDate" />
+        <van-cell title="入校人身份证" :value="item.reIdCode" />
+        <van-cell title="入校人姓名" :value="item.reName" />
+        <!-- <van-image class="expire-wrap" v-if="item.isExpire" width="50" height="50" :src="expireImg" /> -->
       </van-cell-group>
     </van-list>
   </div>
 </template>
 
-<style>
+<style scoped lang="less">
 .reserve-record {
   min-height: 100vh;
   background-color: var(--gray-bg);
@@ -51,9 +53,22 @@ const onLoad = async () => {
 
   .reserve-card {
     position: relative;
-    border-radius: 4px;
+    border-radius:10px;
     & + .reserve-card {
       margin-top: 2rem;
+    }
+    .van-cell {
+      border-radius:10px;
+    }
+    .rev-out{
+      :deep(.van-cell__value){
+        color:grey;
+      }
+    }
+    .rev-in{
+      :deep(.van-cell__value){
+        color:#acd78d;
+      }
     }
     .expire-wrap {
       position: absolute;
