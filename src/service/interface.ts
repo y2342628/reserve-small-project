@@ -1,19 +1,19 @@
 export interface LoginFormData {
-  id: string;
+  idCode: string;
   verifyCode: string;
 }
 
 export interface UserProp {
   idCode: string;
   token: string;
-  phone?: string;
   userId?:number
 }
 
 
 export interface ReserveFormDate {
-  phone: string;
-  reDate: string
+  reIdCode:string;
+  reName:string;
+  reDate: string;
 }
 
 

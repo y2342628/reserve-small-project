@@ -5,12 +5,13 @@ import { post } from "@/utils/request";
 import { dateFormat } from "@/utils/dateFormat";
 import { showToast } from "vant";
 import { useRouter } from "vue-router";
+import { useUserStore } from "@/stores/user";
 
 const router = useRouter();
+const {user} = useUserStore()
 
 const codeImgPattern = /^\d{15}$|^\d{18}$/;
-// const phone = ref<string>();
-const reIdCode = ref<string>();
+const reIdCode = ref<string>(user.idCode);
 const reName = ref<string>();
 const reDate = ref<string>();
 const showCalendar = ref<boolean>();
@@ -32,7 +33,6 @@ async function onSubmit(formData: ReserveFormDate) {
 <template>
   <van-form @submit="onSubmit">
     <van-cell-group inset>
-      <!-- <van-field size="large" v-model="phone" name="phone" label="手机号码" placeholder="手机号码" :rules="[{ required: true, message: '请填写手机号码' }]" /> -->
       <van-field size="large" v-model="reIdCode" name="reIdCode" label="入校人身份证" placeholder="入校人身份证" :rules="[{ required: true, message: '请填写入校人身份证' },{ pattern:codeImgPattern, message: '请填写正确的身份证号码' }]" />
       <van-field size="large" v-model="reName" name="reName" label="入校人姓名" placeholder="入校人姓名" :rules="[{ required: true, message: '请填写入校人姓名' }]" />
       <van-field

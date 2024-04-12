@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { type ReserveFormDate, type RecordList, type RecordItem } from "@/service/interface";
+import { type RecordList, type RecordItem } from "@/service/interface";
 import { get } from "@/utils/request";
 import { dateFormat, isBoforeByDay } from "@/utils/dateFormat";
-import expireImg from "@/assets/expire.png";
-import { showToast } from "vant";
+
 
 const list = ref<RecordItem[]>([]);
 const loading = ref<boolean>(false);
@@ -20,8 +19,7 @@ const onLoad = async () => {
     ...res.data.map((i) => ({
       ...i,
       reDate: dateFormat(i.reDate),
-      isExpire: isBoforeByDay(i.reDate),
-      statusStr: isBoforeByDay(i.reDate)? "已过期" : "有效",
+      isExpire: isBoforeByDay(i.reDate)
     }))
   );
 
@@ -36,10 +34,9 @@ const onLoad = async () => {
   <div class="reserve-record">
     <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
       <van-cell-group class="reserve-card" v-for="item in list" :key="item.id">
-        <van-cell :class="item.isExpire?`rev-out`:`rev-in`" title="预约时间" :value="item.statusStr" :label="item.reDate" />
+        <van-cell :class="item.isExpire?`rev-out`:`rev-in`" title="预约时间" :value="item.isExpire? '已过期': '有效'" :label="item.reDate" />
         <van-cell title="入校人身份证" :value="item.reIdCode" />
         <van-cell title="入校人姓名" :value="item.reName" />
-        <!-- <van-image class="expire-wrap" v-if="item.isExpire" width="50" height="50" :src="expireImg" /> -->
       </van-cell-group>
     </van-list>
   </div>

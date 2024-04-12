@@ -2,6 +2,7 @@
 import axios, { type AxiosInstance } from "axios";
 import { showToast } from "vant"
 import { useUserStore } from "@/stores/user";
+import router from "@/router";
 
 
 class Interceptors {
@@ -32,6 +33,7 @@ class Interceptors {
         this.instance.interceptors.response.use(
             (response: any) => {
                 const res = response.data;
+        
                 if (!response.status.toString().startsWith("2") || res.code === -1) {
                     console.error("系统错误，请检查API是否正常！");
                     return;
@@ -43,6 +45,12 @@ class Interceptors {
             },
             (error: any) => {
                 let errorRes = error.response;
+                if(errorRes.status.toString().startsWith("401") ){
+                    showToast("请登录后使用！")
+                    router.replace("/login");
+                    return 
+                }
+           
                 if (errorRes.status === 0) {
                     errorRes = "连接出错，请确认网络是否正常";
                 }
