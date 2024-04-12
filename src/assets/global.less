@@ -1,0 +1,62 @@
+@import './base.less';
+
+#app {
+  max-width: 1280px;
+  height: 100vh;
+  margin: 0 auto;
+  font-weight: normal;
+}
+
+
+
+
+//margin top
+.margin-top-generator(@i, @max) when (@i =< @max) {
+  .mt-@{i} {
+    margin-top: @i * 2rem;
+  }
+  .margin-top-generator(@i + 1, @max);
+}
+
+// /margin bottom
+.margin-bottom-generator(@i, @max) when (@i =< @max) {
+  .mb-@{i} {
+    margin-bottom: @i * 2rem;
+  }
+  .margin-bottom-generator(@i + 1, @max);
+}
+
+//marigin left
+.margin-left-generator(@i, @max) when (@i =< @max) {
+  .ms-@{i} {
+    margin-left: @i * 2rem;
+  }
+  .margin-left-generator(@i + 1, @max);
+}
+
+//marigin right
+.margin-right-generator(@i, @max) when (@i =< @max) {
+  .me-@{i} {
+    margin-right: @i * 2rem;
+  }
+  .margin-right-generator(@i + 1, @max);
+}
+
+// 调用函数生成类名
+.margin-top-generator(1, 10); 
+.margin-bottom-generator(1, 10); 
+.margin-left-generator(1, 10); 
+.margin-right-generator(1, 10); 
+
+
+.font-bold{
+  font-weight: bold;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.display-none{
+  display: none !important;
+}
