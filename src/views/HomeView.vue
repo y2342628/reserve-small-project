@@ -16,9 +16,9 @@ const jumpPage = (path: string) => {
 
 <template>
   <main class="wrapper">
-    <img src = "../assets/title.png" class="title mt-10 "/>
+    <img src = "../assets/title.png" class="title"/>
 
-    <van-row class="mt-9 btn-wrap">
+    <van-row class="mt-3 btn-wrap">
       <van-col :span="24">
         <div class="custom-btn text-center font-bold reserve" @click="jumpPage('reserve')">预约登记</div>
       </van-col>
@@ -35,7 +35,11 @@ const jumpPage = (path: string) => {
   height: 100%;
   padding: 2rem;
   position: relative;
-    background-color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.4);
   &::after {
     content: "";
     position: absolute;
