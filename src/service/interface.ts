@@ -6,7 +6,8 @@ export interface LoginFormData {
 export interface UserProp {
   idCode: string;
   token: string;
-  userId?:number
+  userId?:number;
+  isAdmin:boolean;
 }
 
 
@@ -27,4 +28,11 @@ export interface RecordList{
   pageSize: number,
   count:number,
   data:  RecordItem[]
+}
+
+
+export interface RecordStatItem {
+  count:number;
+  reDate:string;
+  isExpire?:boolean
 }

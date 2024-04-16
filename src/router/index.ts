@@ -29,6 +29,11 @@ const router = createRouter({
       path: '/friend',
       name: 'friend',
       component: () => import('../views/FriendView.vue')
+    },
+    {
+      path: '/reserve-stat',
+      name: 'reserveStat',
+      component: () => import('../views/ReserveStatView.vue')
     }
   ]
 })

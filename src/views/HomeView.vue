@@ -3,7 +3,7 @@ import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/user";
 
 const router = useRouter();
-
+const { user } = useUserStore()
 
 const jumpPage = (path: string) => {
   const { user } = useUserStore();
@@ -16,7 +16,7 @@ const jumpPage = (path: string) => {
 
 <template>
   <main class="wrapper">
-    <img src = "../assets/title.png" class="title"/>
+    <img src="../assets/title.png" class="title" />
 
     <van-row class="mt-3 btn-wrap">
       <van-col :span="24">
@@ -27,6 +27,9 @@ const jumpPage = (path: string) => {
       </van-col>
       <van-col :span="24" class="mt-1">
         <div class="custom-btn text-center font-bold friend" @click="jumpPage('friend')">校友通道</div>
+      </van-col>
+      <van-col v-if="user.isAdmin" :span="24" class="mt-1">
+        <div class="custom-btn text-center font-bold stat" @click="jumpPage('reserve-stat')">预约人数统计</div>
       </van-col>
     </van-row>
   </main>
@@ -43,6 +46,7 @@ const jumpPage = (path: string) => {
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.4);
+
   &::after {
     content: "";
     position: absolute;
@@ -52,17 +56,19 @@ const jumpPage = (path: string) => {
     bottom: 0;
     background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9)), url("../assets/bg.jpg") center;
     background-size: cover;
-    background-attachment:fixed;
+    background-attachment: fixed;
     z-index: -1;
   }
+
   .title {
-    width:100%;
+    width: 100%;
   }
+
   .btn-wrap {
     background-color: var(--color-bg);
     padding: 2rem 1rem;
     border-radius: 6px;
-    border:1px solid #acd78d;
+    border: 1px solid #acd78d;
   }
 
   .custom-btn {
@@ -70,17 +76,25 @@ const jumpPage = (path: string) => {
     border-radius: 6px;
     padding: 1rem;
     font-size: 1.8rem;
+
     &.reserve {
       color: rgb(53, 137, 136);
       background: linear-gradient(to bottom right, rgb(233, 246, 205) 0%, rgb(255, 255, 255) 100%);
     }
+
     &.record {
       color: rgb(216, 110, 16);
       background: linear-gradient(to bottom right, rgb(254, 239, 206) 0%, rgb(255, 255, 255) 100%);
     }
+
     &.friend {
       color: #50b1f3;
       background: linear-gradient(to bottom right, #c8dfee 0%, rgb(255, 255, 255) 100%);
+    }
+
+    &.stat {
+      color: #8a9116;
+      background: linear-gradient(to bottom right, #f3f5c9 0%, rgb(255, 255, 255) 100%);
     }
   }
 }
