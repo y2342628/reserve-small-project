@@ -8,7 +8,7 @@ const router = useRouter();
 const jumpPage = (path: string) => {
   const { user } = useUserStore();
 
-  if (!user.token) return router.push("/login");
+  if (path != 'friend' && !user.token) return router.push("/login");
 
   router.push(path);
 };
@@ -20,10 +20,13 @@ const jumpPage = (path: string) => {
 
     <van-row class="mt-3 btn-wrap">
       <van-col :span="24">
-        <div class="custom-btn text-center font-bold reserve" @click="jumpPage('reserve')">预约登记</div>
+        <div class="custom-btn text-center font-bold reserve" @click="jumpPage('reserve')">社会人员预约</div>
       </van-col>
-      <van-col :span="24" class="mt-2">
+      <van-col :span="24" class="mt-1">
         <div class="custom-btn text-center font-bold record" @click="jumpPage('reserve-record')">预约记录</div>
+      </van-col>
+      <van-col :span="24" class="mt-1">
+        <div class="custom-btn text-center font-bold friend" @click="jumpPage('friend')">校友通道</div>
       </van-col>
     </van-row>
   </main>
@@ -66,7 +69,7 @@ const jumpPage = (path: string) => {
     line-height: 2.4;
     border-radius: 6px;
     padding: 1rem;
-    font-size: 2.6rem;
+    font-size: 1.8rem;
     &.reserve {
       color: rgb(53, 137, 136);
       background: linear-gradient(to bottom right, rgb(233, 246, 205) 0%, rgb(255, 255, 255) 100%);
@@ -74,6 +77,10 @@ const jumpPage = (path: string) => {
     &.record {
       color: rgb(216, 110, 16);
       background: linear-gradient(to bottom right, rgb(254, 239, 206) 0%, rgb(255, 255, 255) 100%);
+    }
+    &.friend {
+      color: #50b1f3;
+      background: linear-gradient(to bottom right, #c8dfee 0%, rgb(255, 255, 255) 100%);
     }
   }
 }

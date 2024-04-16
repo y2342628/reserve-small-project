@@ -24,6 +24,11 @@ const router = createRouter({
       path: '/reserve-record',
       name: 'reserveRecord',
       component: () => import('../views/ReserveRecordView.vue')
+    },
+    {
+      path: '/friend',
+      name: 'friend',
+      component: () => import('../views/FriendView.vue')
     }
   ]
 })
