@@ -13,7 +13,7 @@ const {updateUser} = useUserStore()
 
 const verifyKey = ref<string>(uuidv4());
 const verifyCodeImg = ref<string>();
-const codeImgPattern = /^\d{15}$|^\d{18}$/;
+const codeImgPattern = /^\d{14}[0-9Xx]$|^\d{17}[0-9Xx]$/;
 
 
 const idCode = ref<string>();
